@@ -1,0 +1,21 @@
+{
+  "realm": "msb",
+  "auth-server-url": "http://localhost:8180",
+  "resource": "team-risk",
+  "credentials": {
+    "secret": "2o3Y1w9gpiMHxlM5rStAZrnAmKkcEeJN"
+  },
+    "enforcement-mode": "ENFORCING",
+    "paths": [
+      {
+        "name": "orders",
+        "path": "/orders/*",
+        "methods": [
+          {
+            "method": "GET",
+            "scopes": ["get-by-name"]
+          }
+        ]
+      }
+    ]
+}

@@ -1,0 +1,1 @@
+#Keycloak can be run in standalone mode or embedded mode 

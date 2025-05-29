@@ -6,6 +6,7 @@ import org.keycloak.adapters.authorization.integration.jakarta.ServletPolicyEnfo
 import org.keycloak.adapters.authorization.spi.ConfigurationResolver;
 import org.keycloak.representations.adapters.config.PolicyEnforcerConfig;
 import org.keycloak.util.JsonSerialization;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,10 +25,13 @@ public class OAuth2ResourceServerSecurityConfiguration {
 	@Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
 	String jwkSetUri;
 
+	@Autowired
+	private CustomAccessDeniedHandler customAccessDeniedHandler;
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.authorizeHttpRequests((authorize) -> authorize.anyRequest().authenticated())
-				.oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
+				.oauth2ResourceServer(
+						(oauth2ResourceServer) -> oauth2ResourceServer.jwt((jwt) -> jwt.decoder(jwtDecoder())).accessDeniedHandler(customAccessDeniedHandler))
 				.addFilterAfter(createPolicyEnforcerFilter(), BearerTokenAuthenticationFilter.class);
 		return http.build();
 	}
@@ -42,7 +46,7 @@ public class OAuth2ResourceServerSecurityConfiguration {
 			throw new RuntimeException(e);
 		}
 		return new ServletPolicyEnforcerFilter(new ConfigurationResolver() {
-			
+
 			@Override
 			public PolicyEnforcerConfig resolve(org.keycloak.adapters.authorization.spi.HttpRequest request) {
 				return config;

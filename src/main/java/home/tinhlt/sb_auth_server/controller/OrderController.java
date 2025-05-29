@@ -17,7 +17,6 @@ public class OrderController {
 	
 	
 	@GetMapping("/get-by-name/{name}")
-//	@PreAuthorize("@authzService.hasPermission(authentication, 'orders', 'get-by-name')")
 	public String getOrderByName(String name) {
 		return "GET order by name";
 	}

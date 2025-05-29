@@ -1,19 +1,19 @@
 {
   "realm": "msb",
   "auth-server-url": "http://localhost:8180",
-  "resource": "team-risk",
+  "resource": "excel-client",
   "credentials": {
-    "secret": "2o3Y1w9gpiMHxlM5rStAZrnAmKkcEeJN"
+    "secret": "YUqBr49QCqobQWMjzwcOKfwoIdWhL2kY"
   },
     "enforcement-mode": "ENFORCING",
     "paths": [
       {
-        "name": "orders",
-        "path": "/orders/*",
+        "name": "/api/excel",
+        "path": "/orders/get-by-name/{name}",
         "methods": [
           {
             "method": "GET",
-            "scopes": ["get-by-name"]
+            "scopes": ["/export-excel-using-spring-batch-with-progress"]
           }
         ]
       }

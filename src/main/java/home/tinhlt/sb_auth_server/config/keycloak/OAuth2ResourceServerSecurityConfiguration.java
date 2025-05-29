@@ -1,4 +1,4 @@
-package home.tinhlt.sb_auth_server.config;
+package home.tinhlt.sb_auth_server.config.keycloak;
 
 import java.io.IOException;
 
@@ -14,6 +14,7 @@ import org.springframework.http.HttpRequest;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationFilter;
@@ -29,7 +30,10 @@ public class OAuth2ResourceServerSecurityConfiguration {
 	private CustomAccessDeniedHandler customAccessDeniedHandler;
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-		http.authorizeHttpRequests((authorize) -> authorize.anyRequest().authenticated())
+		http
+		.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+		.csrf(csrf -> csrf.disable())
+		.authorizeHttpRequests((authorize) -> authorize.anyRequest().authenticated())
 				.oauth2ResourceServer(
 						(oauth2ResourceServer) -> oauth2ResourceServer.jwt((jwt) -> jwt.decoder(jwtDecoder())).accessDeniedHandler(customAccessDeniedHandler))
 				.addFilterAfter(createPolicyEnforcerFilter(), BearerTokenAuthenticationFilter.class);

@@ -21,6 +21,16 @@
 			"name": "Error",
 			"path": "/error",
 			"enforcement-mode": "DISABLED"
-		}
+		},
+		{
+        "name": "orders",
+        "path": "/orders/get-by-name/{name}",
+        "methods": [
+          {
+            "method": "GET",
+            "scopes": ["/get-by-name/{name}"]
+          }
+        ]
+      }
 	]
 }

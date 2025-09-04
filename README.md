@@ -1,3 +1,9 @@
+# this branch is a customization for a central authorization server, rather than using Keycloak directly as one
+  The flow as bellow:
+  	  user login -> this repo -> call to Keycloark for auth -> if ok return to this repo + store the user's session in the redis -> return token to user
+  	  
+#TODO: create a register api
+
 #Keycloak can be run in standalone mode or embedded mode 
 #Keycloak Authorization
 - Resources 1:n Scopes

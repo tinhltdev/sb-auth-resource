@@ -50,6 +50,12 @@ public class AuthController {
 			return Mono.error(new AuthenticationException(4011, message));
 		});
 	}
+	
+	//TODO: api register an user
+	@PostMapping("/register")
+	public ResponseEntity<?> register(){
+		return ResponseEntity.ok(200);
+	}
 
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody Map<String, String> credentials, HttpSession session) {

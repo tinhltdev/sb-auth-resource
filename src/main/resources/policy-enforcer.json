@@ -1,21 +1,26 @@
 {
-  "realm": "msb",
-  "auth-server-url": "http://localhost:8180",
-  "resource": "excel-client",
-  "credentials": {
-    "secret": "YUqBr49QCqobQWMjzwcOKfwoIdWhL2kY"
-  },
-    "enforcement-mode": "ENFORCING",
-    "paths": [
-      {
-        "name": "/api/excel",
-        "path": "/orders/get-by-name/{name}",
-        "methods": [
-          {
-            "method": "GET",
-            "scopes": ["/export-excel-using-spring-batch-with-progress"]
-          }
-        ]
-      }
-    ]
+	"realm": "msb",
+	"auth-server-url": "http://localhost:8180",
+	"resource": "file-client",
+	"credentials": {
+		"secret": "YUqBr49QCqobQWMjzwcOKfwoIdWhL2kY"
+	},
+	"enforcement-mode": "ENFORCING",
+	"paths": [
+		{
+			"name": "Public Login",
+			"path": "/auth/login",
+			"enforcement-mode": "DISABLED"
+		},
+		{
+			"name": "Get login status",
+			"path": "/auth/status",
+			"enforcement-mode": "DISABLED"
+		},
+		{
+			"name": "Error",
+			"path": "/error",
+			"enforcement-mode": "DISABLED"
+		}
+	]
 }

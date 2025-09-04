@@ -25,7 +25,7 @@ public class CustomAccessDeniedHandler implements AccessDeniedHandler {
 	    log.error("Unauthorized error: {}", accessDeniedException.getMessage());
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-	    ApiResponse basicResponse = ApiResponse.builder().status(HttpServletResponse.SC_FORBIDDEN).message(accessDeniedException.getMessage()).build();
+	    ApiResponse basicResponse = ApiResponse.builder().code(HttpServletResponse.SC_FORBIDDEN).message(accessDeniedException.getMessage()).build();
 	    final ObjectMapper mapper = new ObjectMapper();
 	    mapper.writeValue(response.getOutputStream(), basicResponse);
     }

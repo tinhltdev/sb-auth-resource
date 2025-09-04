@@ -3,16 +3,15 @@ package home.tinhlt.sb_auth_server.payloads.response;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
 @SuperBuilder
+@AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class ApiResponse extends BaseApiResponse{
+public class ErrorApiResponse extends BaseApiResponse{
+	private Object data;
 }

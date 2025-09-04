@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/orders")
-public class OrderController {
+@RequestMapping("/api/check")
+public class CheckController {
 
 	@GetMapping
 	public String getOrder() {

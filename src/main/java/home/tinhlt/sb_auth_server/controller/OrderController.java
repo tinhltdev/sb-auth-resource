@@ -10,12 +10,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("/api/orders")
 public class OrderController {
 
+	//role: Manager
 	@GetMapping
 	public String getOrder() {
 		return "GET order";
+	}
+	
+	//role: regular users
+	@PostMapping
+	public String createOrder() {
+		return "Create order";
 	}
 	
 	
@@ -37,8 +44,5 @@ public class OrderController {
 		return "GET order";
 	}
 	
-	@PostMapping
-	public String createOrder() {
-		return "Create order";
-	}
+	
 }

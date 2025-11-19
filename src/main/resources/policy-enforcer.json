@@ -1,9 +1,9 @@
 {
-  "realm": "msb",
+  "realm": "MMB ",
   "auth-server-url": "http://localhost:8180",
-  "resource": "excel-client",
+  "resource": "3rd",
   "credentials": {
-    "secret": "YUqBr49QCqobQWMjzwcOKfwoIdWhL2kY"
+    "secret": "lCnKcGMsJZ67gIBnwmtf58Vzgnt0ZDnQ"
   },
     "enforcement-mode": "ENFORCING",
     "paths": [
@@ -14,6 +14,20 @@
           {
             "method": "GET",
             "scopes": ["/export-excel-using-spring-batch-with-progress"]
+          }
+        ]
+      },
+       {
+        "name": "order",
+        "path": "/api/orders",
+        "methods": [
+          {
+            "method": "GET",
+            "scopes": ["View-Order"]
+          },
+          {
+            "method": "POST",
+            "scopes": ["Create-Order"]
           }
         ]
       }

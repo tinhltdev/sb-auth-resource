@@ -35,7 +35,8 @@ public class OAuth2ResourceServerSecurityConfiguration {
 		.csrf(csrf -> csrf.disable())
 		.authorizeHttpRequests((authorize) -> authorize.anyRequest().authenticated())
 				.oauth2ResourceServer(
-						(oauth2ResourceServer) -> oauth2ResourceServer.jwt((jwt) -> jwt.decoder(jwtDecoder())).accessDeniedHandler(customAccessDeniedHandler))
+						(oauth2ResourceServer) -> oauth2ResourceServer.jwt((jwt) -> jwt.decoder(jwtDecoder()))
+						.accessDeniedHandler(customAccessDeniedHandler))
 				.addFilterAfter(createPolicyEnforcerFilter(), BearerTokenAuthenticationFilter.class);
 		return http.build();
 	}
